@@ -114,7 +114,18 @@
 
         3. `$ npm start` 
 
-### 
+### routes
+
+    We'll create routes/auth.js   : though we'll be using auth.js for authentication routes like login, register, etc
+
+        1. auth.js : instead `app.get('/'...)`,    we'll use express.Router() itself.
+
+                `router.get('/'...)
+
+           1. check the syntax for export as well.
+
+        2. server.js : We can't be keep importing all the routes files. So we'll automate. using 'fs'.
+        3. 
 
 
 

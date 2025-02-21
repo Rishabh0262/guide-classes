@@ -4,6 +4,7 @@ import cors from "cors"
 // require("dotenv").config();         // this will helps in loading env. variables
 import morgan from "morgan";
 import dotenv from "dotenv";
+import {readdirSync} from 'fs'
 
 
 dotenv.config();
@@ -30,6 +31,18 @@ app.use(morgan("dev"))      // we pass 'dev' flag as string.
 app.get('/', (req, res) => {
     res.send("you hit the server endpoint...")
 })
+
+// fs.readdirSync('./routes').map((r) => 
+//     app.use("./api", import(`./routes/${r}`))
+// )
+
+
+const routes = readdirSync('./routes');
+for (const r of routes) {
+    import(`./routes/${r}`).then((module) => {
+        app.use("/api", module.default);
+    }).catch(err => console.error(`Error loading route ${r}:`, err));
+}
 
 
 // port : we can use .env file. which will be helpful in production use.
