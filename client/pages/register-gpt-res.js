@@ -8,38 +8,17 @@ const Register = () => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    // console.table({name, email, password})
-    const { data } = await axios.post("http://localhost:8000/api/register", {
-      name: name,
-      email: email,
-      password: password,
-    });
-
-    
-    /*
     try {
       const { data } = await axios.post("http://localhost:8000/api/register", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: name,
-            email: email,
-            password: password,
-          })
-    });
+        name: name,
+        email: email,
+        password: password,
+      });
       console.log("Register Response:");
-      console.log(data)
+      console.log(data); // Handle the response data here
     } catch (error) {
-      console.error(
-        "Registration Error:",
-        error.response?.data || error.message
-      );
+      console.error("Registration Error:", error.response?.data || error.message);
     }
-      */
-
-    console.log("Register Response : " , data);
   };
 
   return (

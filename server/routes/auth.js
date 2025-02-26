@@ -5,7 +5,7 @@ const router = Router();
 // controller
 import { register } from "../controllers/auth.js";
 
-router.get("/register", register)
+router.post("/register", register)
 
 // Or
 // router.get("/register", (req, res) => {

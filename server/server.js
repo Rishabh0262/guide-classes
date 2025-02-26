@@ -5,7 +5,8 @@ import cors from "cors"
 import morgan from "morgan";
 import dotenv from "dotenv";
 import {readdirSync} from 'fs'
-
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
 
 dotenv.config();
 
@@ -13,10 +14,13 @@ dotenv.config();
 const app = express();
 
 
+
 // apply middleware : it'll run before any response is send back to our client.
 app.use(cors())
 app.use(express.json())     // data[FE -> BE] if available as JSON data.
 app.use(morgan("dev"))      // we pass 'dev' flag as string.
+// app.use(bodyParser.json()); // Middleware to parse JSON bodies
+
 
 // custom middleware : to test...
 // app.use((req, res, next) => {
@@ -24,6 +28,16 @@ app.use(morgan("dev"))      // we pass 'dev' flag as string.
 //     next();
 
 // })
+
+
+
+// MongoDB Connection
+mongoose.connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log("🔥 MongoDB Connected!"))
+.catch((err) => console.error("❌ MongoDB Connection Error:", err));
 
 
 
